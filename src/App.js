@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Timeline from './components/timeline'
+import ToolBar from './components/toolbar'
+import CreateNewTask from './components/createNewTask'
+import { useEffect, useState } from 'react'
 
 function App() {
+  const [addingNewTask, setAddingNewTask] = useState(null)
+  
+  const handleAddingState = () => {
+    setAddingNewTask(prev => !prev)
+  }
+
+  const refreshTimeline = (refresh) => {
+    refresh()
+  }
+
+  useEffect(() => {
+    addingNewTask === 0 && refreshTimeline() 
+  })
+
   return (
+    <>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Timeline refresh={refreshTimeline}/>
     </div>
+    {addingNewTask ? <CreateNewTask handleAddingState={handleAddingState}/> : null}
+    <ToolBar handleAddingState={handleAddingState}/>
+    </>
   );
 }
 
