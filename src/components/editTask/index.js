@@ -1,12 +1,12 @@
 import {ReactComponent as EditSVG} from '../../assets/edit.svg'
 
-const EditBT = () => {
+const EditBT = ({setEditingState}) => {
     return (
         <>
-            <div className="edit-bt">
+            <div className="edit-bt" onClick={() => setEditingState(1)}>
                 <EditSVG />
             </div>
-            <style>
+            <style jsx="true">
                 {`
                     .edit-bt > * {
                         width: 20px;

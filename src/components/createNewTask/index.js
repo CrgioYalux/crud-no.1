@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import {addTask} from '../../firebase/client'
 import {STATES} from "./states";
+import {createDate} from '../createDate'
 
 const CreateNewTask = ({handleAddingState}) => {
     const [taskContent, setTaskContent] = useState(0)
@@ -13,17 +14,6 @@ const CreateNewTask = ({handleAddingState}) => {
 
     const handleTaskContentChange = (e) => {
         setTaskContent(e.target.value)
-    }
-    
-    const createDate = () => {
-        const hours = new Date().getHours().toString()
-        const minutes = new Date().getMinutes().toString()
-        
-        let date = "";
-        (hours < 10) ? date += `0${hours}` : date += hours
-        date += ":";
-        (minutes < 10) ? date += `0${minutes}` : date += minutes
-        return date
     }
 
     const handleSubmit = (event) => {
@@ -62,6 +52,7 @@ const CreateNewTask = ({handleAddingState}) => {
                 </div>
             <button disabled={priority === undefined || !taskContent.length}>add</button>
             </form>
+            <button className="exit-bt" onClick={handleAddingState}>exit</button>
         </div>
         <style jsx="true">
             {`
@@ -184,6 +175,17 @@ const CreateNewTask = ({handleAddingState}) => {
 
                 .set-high:hover {
                     background-color: rgba(254, 33, 9, .7);
+                }
+                .exit-bt {
+                    position: absolute;
+                    top: 85%;
+                    left: 50%;
+                    transform: translate(-50%, 50%);
+
+                    border: 0;
+                    padding: .4rem 2rem;
+                    
+                    cursor: pointer;
                 }
             `}
         </style>

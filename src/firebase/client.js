@@ -28,6 +28,10 @@ export const deleteTask = (id) => {
     return db.collection('tasks').doc(id).delete()
 }
 
+export const editTask = (id, newTask) => {
+    return db.collection('tasks').doc(id).update({...newTask})
+}
+
 export const fetchTasks = () => {
     return db.collection('tasks')
         .get()

@@ -1,4 +1,3 @@
-import * as React from "react"
 import {deleteTask} from '../../firebase/client'
 import {ReactComponent as DeleteSVG} from '../../assets/delete.svg'
 
