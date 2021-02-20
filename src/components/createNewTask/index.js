@@ -10,11 +10,11 @@ const CreateNewTask = ({handleAddingState}) => {
 
     const handlePriorityChange = (state) => {
         const priorities = document.querySelector(".priorities")
-        priorities.children[0].classList.remove('selected-new-prio')
-        priorities.children[1].classList.remove('selected-new-prio')
-        priorities.children[2].classList.remove('selected-new-prio')
+        priorities.children[0].classList.remove('selected-prio')
+        priorities.children[1].classList.remove('selected-prio')
+        priorities.children[2].classList.remove('selected-prio')
 
-        priorities.children[state].classList.add('selected-new-prio')
+        priorities.children[state].classList.add('selected-prio')
         setPriority(state)
     }
 
@@ -191,6 +191,10 @@ const CreateNewTask = ({handleAddingState}) => {
                     padding: .4rem 2rem;
                     
                     cursor: pointer;
+                }
+
+                .selected-prio {
+                    border: 1px solid black;
                 }
             `}
         </style>

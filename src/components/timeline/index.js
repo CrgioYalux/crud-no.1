@@ -23,7 +23,10 @@ const Timeline = ({refresh}) => {
     }, [])
 
     useEffect(() => {
-        if (!tasks.length) setStatus(STATES.NO_TASKS)
+        if (!tasks.length) {
+            setStatus(STATES.NO_TASKS)
+            setReady(0)
+        }
         else {
             setReady(1)
         }
