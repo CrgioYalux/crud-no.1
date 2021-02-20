@@ -29,6 +29,12 @@ const Task = ({data, refresh}) => {
     }, [editingState])
 
     const handleNewPriority = (new_prio) => {
+        const priorities = document.querySelector('.edit-priority')
+        priorities.children[0].children[0].classList.remove('selected-new-prio')
+        priorities.children[1].children[0].classList.remove('selected-new-prio')
+        priorities.children[2].children[0].classList.remove('selected-new-prio')
+
+        priorities.children[new_prio].children[0].classList.add('selected-new-prio')
         setNewPriority(new_prio)
     }
 
@@ -186,6 +192,9 @@ const Task = ({data, refresh}) => {
 
                 .edit-priority > div > .ball:hover {
                     transform: scale(1.2);
+                }
+                .selected-new-prio {
+                    border: 1px solid black;
                 }
             `}
         </style>

@@ -9,6 +9,12 @@ const CreateNewTask = ({handleAddingState}) => {
     const [status, setStatus] = useState(STATES.NOT_SET)
 
     const handlePriorityChange = (state) => {
+        const priorities = document.querySelector(".priorities")
+        priorities.children[0].classList.remove('selected-new-prio')
+        priorities.children[1].classList.remove('selected-new-prio')
+        priorities.children[2].classList.remove('selected-new-prio')
+
+        priorities.children[state].classList.add('selected-new-prio')
         setPriority(state)
     }
 
@@ -45,9 +51,9 @@ const CreateNewTask = ({handleAddingState}) => {
                 <div className="set-priority">
                     <p>Choose a priority:</p>
                     <ul className="priorities">
-                        <li onClick={() => handlePriorityChange(2)} className="priority set-high">high</li>
-                        <li onClick={() => handlePriorityChange(1)} className="priority set-medium">medium</li>
                         <li onClick={() => handlePriorityChange(0)} className="priority set-low">low</li>
+                        <li onClick={() => handlePriorityChange(1)} className="priority set-medium">medium</li>
+                        <li onClick={() => handlePriorityChange(2)} className="priority set-high">high</li>
                     </ul>
                 </div>
             <button disabled={priority === undefined || !taskContent.length}>add</button>
@@ -135,7 +141,6 @@ const CreateNewTask = ({handleAddingState}) => {
                     align-items: center;
                     justify-content: center;
 
-                    border: 1px solid black;
                     border-radius: 9999px;
 
                     font-size: 1.5rem;
