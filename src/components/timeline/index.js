@@ -9,6 +9,7 @@ const Timeline = ({refresh}) => {
     const [tasks, setTasks] = useState([])
     const [ready, setReady] = useState(0)
     const [status, setStatus] = useState(STATES.LOADING)
+
     const getTasks = () => {
         fetchTasks().then(setTasks)
     }
@@ -33,7 +34,7 @@ const Timeline = ({refresh}) => {
         <div className="timeline">
             {ready 
                 ? tasks.map(task => {
-                    return <Task data={task} key={task.id}/>
+                    return <Task data={task} key={task.id} refresh={getTasks}/>
                 })
                 : status === STATES.LOADING ? <Loader /> : <div className="no-tasks">Add a task</div>
             }

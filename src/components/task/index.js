@@ -1,9 +1,15 @@
 import Priority from '../priority'
+import DeleteBT from '../deleteTask'
+import EditBT from '../editTask'
 
-const Task = ({data}) => {
+const Task = ({data, refresh}) => {
     return (
         <>
         <article>
+            <div className="task-tools">
+                <DeleteBT id={data.id} refresh={refresh}/>
+                <EditBT />
+            </div>
             {
                 <p className="date">{data.createdAt}</p>
             }
@@ -37,7 +43,26 @@ const Task = ({data}) => {
                     font-size: 1.2rem;
                     font-family: arial;
                 }
-                
+
+                .task-tools {
+                    visibility: hidden;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 5px;
+                    position: absolute;
+                    top: 5px;
+                    left: 5px;
+
+                    transition: transform .2s;
+                }
+
+                article:hover .task-tools {
+                    visibility: visible;
+                }
+
+                .task-tools > div:hover {
+                    transform: scale(1.1);
+                }
             `}
         </style>
         </>
