@@ -5,7 +5,7 @@ import { fetchTasks } from '../../firebase/client'
 import Loader from '../loader/index'
 import {STATES} from './states'
 
-const Timeline = ({refresh}) => {
+const Timeline = ({refresh, filter}) => {
     const [tasks, setTasks] = useState([])
     const [ready, setReady] = useState(0)
     const [status, setStatus] = useState(STATES.LOADING)
@@ -37,7 +37,9 @@ const Timeline = ({refresh}) => {
         <div className="timeline">
             {ready 
                 ? tasks.map(task => {
-                    return <Task data={task} key={task.id} refresh={getTasks}/>
+                    if (filter === task.priority) return <Task data={task} key={task.id} refresh={getTasks}/>
+                    else if (filter === 3) return <Task data={task} key={task.id} refresh={getTasks}/>
+                    
                 })
                 : status === STATES.LOADING ? <Loader /> : <div className="no-tasks">Add a task</div>
             }

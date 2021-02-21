@@ -1,10 +1,11 @@
-const ToolBar = ({handleAddingState}) => {
+import Filter from '../filter'
+const ToolBar = ({handleAddingState, handleFilter}) => {
     return (
         <>
         <div className="nav">
             <ul className="tools">
                 <li className="tool" onClick={handleAddingState}>add new</li>
-                <li className="tool">filter</li>
+                <Filter handleFilter={handleFilter} />
                 <li className="tool">search</li>
             </ul>
         </div>
@@ -44,7 +45,6 @@ const ToolBar = ({handleAddingState}) => {
                 }
                 
                 .nav {
-                    // background-color: #ccc;
                     position: absolute;
                     bottom: 0;
                     left: 0;

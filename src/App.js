@@ -6,6 +6,11 @@ import { useEffect, useState } from 'react'
 
 function App() {
   const [addingNewTask, setAddingNewTask] = useState(null)
+  const [filter, setFilter] = useState(3)
+
+  const handleFilter = (filter) => {
+    setFilter(filter)
+  }
   
   const handleAddingState = () => {
     setAddingNewTask(prev => !prev)
@@ -22,10 +27,10 @@ function App() {
   return (
     <>
     <div className="App">
-      <Timeline refresh={refreshTimeline}/>
+      <Timeline refresh={refreshTimeline} filter={filter}/>
     </div>
     {addingNewTask ? <CreateNewTask handleAddingState={handleAddingState}/> : null}
-    <ToolBar handleAddingState={handleAddingState}/>
+    <ToolBar handleAddingState={handleAddingState} handleFilter={handleFilter}/>
     </>
   );
 }
